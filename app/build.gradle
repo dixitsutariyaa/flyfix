@@ -43,4 +43,6 @@ dependencies {
     //multidex
     implementation "androidx.multidex:multidex:2.0.1"
 
+    implementation 'com.dixit:flyfix:1.0.0'
+
 }

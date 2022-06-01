@@ -33,7 +33,7 @@ publishing {
             artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
         }
 
-        debug(MavenPublication) {
+        /*debug(MavenPublication) {
 //            from components.debug
 
             // Replace with your own group ID.
@@ -43,7 +43,7 @@ publishing {
             artifactId getArtificatId()
             version getVersionName()
             artifact("$buildDir/outputs/aar/${getArtificatId()}-debug.aar")
-        }
+        }*/
     }
 
     repositories {
