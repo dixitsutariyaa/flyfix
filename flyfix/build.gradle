@@ -17,11 +17,32 @@ def getArtificatId = { ->
 
 publishing {
     publications {
-        bar(MavenPublication) {
+       /* bar(MavenPublication) {
             groupId 'com.dixit' // Replace with group ID
             artifactId getArtificatId()
             version getVersionName()
             artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+        }*/
+        release(MavenPublication) {
+//            from components.release
+            // Replace with your own group ID.
+            groupId 'com.dixit'
+            // Replace with the name of your library
+            artifactId getArtificatId()
+            version getVersionName()
+            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+        }
+
+        debug(MavenPublication) {
+//            from components.debug
+
+            // Replace with your own group ID.
+            groupId 'com.dixit'
+
+            // Replace with the name of your library
+            artifactId getArtificatId()
+            version getVersionName()
+            artifact("$buildDir/outputs/aar/${getArtificatId()}-debug.aar")
         }
     }
 
@@ -46,7 +67,6 @@ publishing {
 }
 android {
     compileSdk 32
-
     defaultConfig {
         minSdk 25
         targetSdk 32
