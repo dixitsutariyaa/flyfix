@@ -19,7 +19,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
 //                from components.release
-                groupId 'com.dixit'
+                groupId 'com.github.dixitsutariyaa'
                 artifactId getArtificatId()
                 version getVersionName()
 //                artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
