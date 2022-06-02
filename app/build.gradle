@@ -50,7 +50,7 @@ dependencies {
 
     //multidex
     implementation "androidx.multidex:multidex:2.0.1"
-
     implementation 'com.github.dixitsutariyaa:flyfix:1.0.0'
+
 
 }
