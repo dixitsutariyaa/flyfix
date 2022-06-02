@@ -14,57 +14,51 @@ def getVersionName = { ->
 def getArtificatId = { ->
     return "flyfix" // Replace with library name ID
 }
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+//                from components.release
+                groupId 'com.dixit'
+                artifactId getArtificatId()
+                version getVersionName()
+                artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+            }
 
-publishing {
-    publications {
-       /* bar(MavenPublication) {
-            groupId 'com.dixit' // Replace with group ID
-            artifactId getArtificatId()
-            version getVersionName()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
-        }*/
-        release(MavenPublication) {
-//            from components.release
-            // Replace with your own group ID.
-            groupId 'com.dixit'
-            // Replace with the name of your library
-            artifactId getArtificatId()
-            version getVersionName()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+            /*debug(MavenPublication) {
+    //            from components.debug
+
+                // Replace with your own group ID.
+                groupId 'com.dixit'
+
+                // Replace with the name of your library
+                artifactId getArtificatId()
+                version getVersionName()
+                artifact("$buildDir/outputs/aar/${getArtificatId()}-debug.aar")
+            }*/
         }
 
-        /*debug(MavenPublication) {
-//            from components.debug
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                /** Configure path of your package repository on Github
+                 ** Replace GITHUB_USERID with your/organisation Github userID
+                 ** and REPOSITORY with the repository name on GitHub
+                 */
+                url = uri("https://maven.pkg.github.com/dixitsutariyaa/flyfix")
+                credentials {
+                    /** Create github.properties in root project folder file with
+                     ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
+                     ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
 
-            // Replace with your own group ID.
-            groupId 'com.dixit'
-
-            // Replace with the name of your library
-            artifactId getArtificatId()
-            version getVersionName()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-debug.aar")
-        }*/
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            /** Configure path of your package repository on Github
-             ** Replace GITHUB_USERID with your/organisation Github userID
-             ** and REPOSITORY with the repository name on GitHub
-             */
-            url = uri("https://maven.pkg.github.com/dixitsutariyaa/flyfix")
-            credentials {
-                /** Create github.properties in root project folder file with
-                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-                 ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
-
-                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+                    username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                    password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+                }
             }
         }
     }
 }
+
 android {
     compileSdk 32
     defaultConfig {
