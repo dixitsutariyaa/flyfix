@@ -22,7 +22,7 @@ afterEvaluate {
                 groupId 'com.dixit'
                 artifactId getArtificatId()
                 version getVersionName()
-                artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+//                artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
             }
 
             /*debug(MavenPublication) {
@@ -38,24 +38,24 @@ afterEvaluate {
             }*/
         }
 
-        repositories {
+       /* repositories {
             maven {
                 name = "GitHubPackages"
-                /** Configure path of your package repository on Github
+                *//** Configure path of your package repository on Github
                  ** Replace GITHUB_USERID with your/organisation Github userID
                  ** and REPOSITORY with the repository name on GitHub
-                 */
+                 *//*
                 url = uri("https://maven.pkg.github.com/dixitsutariyaa/flyfix")
                 credentials {
-                    /** Create github.properties in root project folder file with
+                    *//** Create github.properties in root project folder file with
                      ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
-                     ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
+                     ** Set env variable GPR_USER & GPR_API_KEY if not adding a properties file**//*
 
                     username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
                     password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
                 }
             }
-        }
+        }*/
     }
 }
 
